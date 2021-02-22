@@ -1,0 +1,17 @@
+.TodoList {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.TodoListbutton {
+  margin-left: -30px;
+  position: absolute;
+}
+
+.icon {
+  background-color: brown;
+}
+
+.Input {
+  text-decoration: line-through;
+}
