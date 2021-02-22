@@ -23,8 +23,9 @@ function TodoList(props) {
     console.log("setdef");
   };
 
-  const buttonHandler1 = (event) => {
-    console.log(event.target.value);
+  const removeTodo = (todo) => {
+    console.log(todo);
+    props.onRemoveTodo(todo);
   };
   const list = props.todos.map((todo) => {
     return (
@@ -53,7 +54,11 @@ function TodoList(props) {
             aria-label="Text input with radio button"
             disabled={todo.status === "completed" ? true : false}
           />
-          <button className="btn" value={todo.todo} onClick={buttonHandler1}>
+          <button
+            className="btn"
+            value={todo.todo}
+            onClick={() => removeTodo(todo.todo)}
+          >
             x
           </button>
         </div>
@@ -76,6 +81,7 @@ const mapStateToDispatch = (dispatch) => {
       dispatch({ type: "SET_TODO", value: todo, updatedTodo: name }),
     onStrikeThrough: (name) => dispatch({ type: "STRIKE", value: name }),
     onChangeStatus: (name) => dispatch({ type: "CHANGE_STATUS", value: name }),
+    onRemoveTodo: (todo) => dispatch({ type: "REMOVE", value: todo }),
   };
 };
 

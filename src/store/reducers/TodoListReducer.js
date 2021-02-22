@@ -53,6 +53,10 @@ const todoReducer = (state = initalState, action) => {
       return {
         todos: todos.concat(updatedStatusTodoClick),
       };
+    case "REMOVE":
+      return {
+        todos: state.todos.filter((todo) => todo.todo !== action.value),
+      };
 
     default:
       return state;
