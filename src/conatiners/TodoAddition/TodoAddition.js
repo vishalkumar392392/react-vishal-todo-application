@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { Route, useParams } from "react-router-dom";
+import TodoList from "../TodoList/TodoList";
 import classes from "./TodoAdditon.module.css";
 function TodoAddition(props) {
   const [todo, setTodo] = useState("");
@@ -8,10 +10,11 @@ function TodoAddition(props) {
   };
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    console.log(todo);
     props.onAddTodo(todo);
     setTodo("");
+    props.history.push("/all");
   };
+
   return (
     <div className={classes.TodoAddition}>
       <form onSubmit={onSubmitHandler}>
@@ -23,6 +26,8 @@ function TodoAddition(props) {
           onChange={(event) => onChangeHandler(event)}
         />
       </form>
+      {/* <TodoList /> */}
+      <Route path="/:filter" component={TodoList} />
     </div>
   );
 }

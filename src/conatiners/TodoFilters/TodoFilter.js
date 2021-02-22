@@ -7,16 +7,16 @@ function TodoFilter(props) {
   return (
     <div className="TodoFilter">
       <a style={{ marginRight: "20px" }}>{props.todos.length} Items left</a>
-      <NavLink to="/" style={{ marginRight: "20px" }}>
-        Active
-      </NavLink>
-      <NavLink to="/" style={{ marginRight: "20px" }}>
+      <NavLink to="/all" style={{ marginRight: "20px", color: "black" }}>
         All
       </NavLink>
-      <NavLink to="/" style={{ marginRight: "20px" }}>
+      <NavLink to="/active" style={{ marginRight: "20px", color: "black" }}>
+        Active
+      </NavLink>
+      <NavLink to="/completed" style={{ marginRight: "20px", color: "black" }}>
         Completed
       </NavLink>
-      <NavLink to="/" style={{ marginRight: "20px" }}>
+      <NavLink to="/clear" style={{ marginRight: "20px", color: "black" }}>
         Clear Completed
       </NavLink>
     </div>

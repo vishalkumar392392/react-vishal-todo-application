@@ -1,6 +1,10 @@
 .TodoList {
-  width: 50%;
-  margin: 0 auto;
+  width: 100%;
+  margin: 10px auto;
+}
+
+.TodoListStyle {
+  margin-top: 50px;
 }
 
 .TodoListbutton {

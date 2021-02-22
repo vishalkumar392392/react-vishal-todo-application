@@ -1,33 +1,40 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { useParams } from "react-router-dom";
 import classes from "./TodoList.module.css";
 function TodoList(props) {
-  let changeValue = "";
-  const [clickstart, setclickstart] = useState(false);
-  const [todos, setTodos] = useState("");
-
   const doubleClick = (event) => {
-    console.log("double");
-    console.log(event.target.value);
     props.onChangeStatus(event.target.value);
   };
   const test = (todo, event) => {
     props.onSetTodo(todo, event.target.value);
   };
-  const [cssClass, setcssClass] = useState(null);
-  let count = 1;
   const radioButtonHandler = (event) => {
     props.onStrikeThrough(event.target.value);
   };
-  const setDefault = () => {
-    console.log("setdef");
-  };
 
   const removeTodo = (todo) => {
-    console.log(todo);
     props.onRemoveTodo(todo);
   };
-  const list = props.todos.map((todo) => {
+
+  const params = useParams();
+
+  let actions = [];
+  if (params.filter === "all") {
+    actions = [...props.todos];
+  }
+  if (params.filter === "active") {
+    actions = props.todos.filter((todo) => todo.status === "active");
+  }
+  if (params.filter === "completed") {
+    actions = props.todos.filter((todo) => todo.status === "completed");
+  }
+  if (params.filter === "clear") {
+    props.onClearCompleted();
+    props.history.push("/all");
+  }
+
+  const list = actions.map((todo) => {
     return (
       <div className={classes.TodoList} key={todo.id}>
         <div className="input-group">
@@ -66,7 +73,7 @@ function TodoList(props) {
     );
   });
 
-  return <div>{list}</div>;
+  return <div className={classes.TodoListStyle}>{list}</div>;
 }
 
 const mapStateToProps = (state) => {
@@ -82,6 +89,7 @@ const mapStateToDispatch = (dispatch) => {
     onStrikeThrough: (name) => dispatch({ type: "STRIKE", value: name }),
     onChangeStatus: (name) => dispatch({ type: "CHANGE_STATUS", value: name }),
     onRemoveTodo: (todo) => dispatch({ type: "REMOVE", value: todo }),
+    onClearCompleted: () => dispatch({ type: "CLEAR_COMPLETE" }),
   };
 };
 

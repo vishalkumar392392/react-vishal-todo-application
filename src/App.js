@@ -1,7 +1,7 @@
 import "./App.css";
 import TodoAddition from "./conatiners/TodoAddition/TodoAddition";
 import TodoList from "./conatiners/TodoList/TodoList";
-import { BrowserRouter, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import TodoFilter from "./conatiners/TodoFilters/TodoFilter";
 
 function App() {
@@ -9,9 +9,12 @@ function App() {
     <div className="App">
       <h1 className="h1">Vishal todos application</h1>
       <BrowserRouter>
-        <Switch></Switch>
-        <TodoAddition />
-        <TodoList />
+        <Switch>
+          <Route path="/" component={TodoAddition} />
+        </Switch>
+
+        {/* <TodoAddition /> */}
+        {/* <TodoList /> */}
         <TodoFilter />
       </BrowserRouter>
     </div>

@@ -30,14 +30,12 @@ const todoReducer = (state = initalState, action) => {
         todo: updated[0].todo,
         status: "completed",
       };
-      console.log(updated);
-      console.log(updatedStatusTodo);
+
       return {
         todos: filteredObj.concat(updatedStatusTodo),
       };
 
     case "STRIKE":
-      console.log(action);
       const todos = state.todos.filter((todo) => todo.todo !== action.value);
       const updatedtodo = state.todos.filter(
         (todo) => todo.todo === action.value
@@ -48,14 +46,18 @@ const todoReducer = (state = initalState, action) => {
         todo: updatedtodo[0].todo,
         status: updatedtodo[0].status === "completed" ? "active" : "completed",
       };
-      console.log(updatedtodo);
-      console.log(updatedStatusTodoClick);
+
       return {
         todos: todos.concat(updatedStatusTodoClick),
       };
     case "REMOVE":
       return {
         todos: state.todos.filter((todo) => todo.todo !== action.value),
+      };
+
+    case "CLEAR_COMPLETE":
+      return {
+        todos: state.todos.filter((todo) => todo.status !== "completed"),
       };
 
     default:
