@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import classes from "./TodoList.module.css";
+import * as actionTypes from "../../store/actions/index";
+
 function TodoList(props) {
   const doubleClick = (event) => {
     props.onChangeStatus(event.target.value);
@@ -84,12 +86,12 @@ const mapStateToProps = (state) => {
 
 const mapStateToDispatch = (dispatch) => {
   return {
-    onSetTodo: (todo, name) =>
-      dispatch({ type: "SET_TODO", value: todo, updatedTodo: name }),
-    onStrikeThrough: (name) => dispatch({ type: "STRIKE", value: name }),
-    onChangeStatus: (name) => dispatch({ type: "CHANGE_STATUS", value: name }),
-    onRemoveTodo: (todo) => dispatch({ type: "REMOVE", value: todo }),
-    onClearCompleted: () => dispatch({ type: "CLEAR_COMPLETE" }),
+    onSetTodo: (todo, updatedTodo) =>
+      dispatch(actionTypes.setTodo(todo, updatedTodo)),
+    onStrikeThrough: (todo) => dispatch(actionTypes.strikeThrough(todo)),
+    onChangeStatus: (todo) => dispatch(actionTypes.changeStatus(todo)),
+    onRemoveTodo: (todo) => dispatch(actionTypes.removeTodo(todo)),
+    onClearCompleted: () => dispatch(actionTypes.clearCompleted()),
   };
 };
 

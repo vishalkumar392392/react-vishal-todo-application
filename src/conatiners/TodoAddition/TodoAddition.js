@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { Route, useParams } from "react-router-dom";
+import { Route } from "react-router-dom";
 import TodoList from "../TodoList/TodoList";
 import classes from "./TodoAdditon.module.css";
+import * as actionTypes from "../../store/actions/index";
 function TodoAddition(props) {
   const [todo, setTodo] = useState("");
   const onChangeHandler = (event) => {
@@ -26,7 +27,6 @@ function TodoAddition(props) {
           onChange={(event) => onChangeHandler(event)}
         />
       </form>
-      {/* <TodoList /> */}
       <Route path="/:filter" component={TodoList} />
     </div>
   );
@@ -40,7 +40,7 @@ const mapStateToProps = (state) => {
 
 const mapStateToDispatch = (dispatch) => {
   return {
-    onAddTodo: (todo) => dispatch({ type: "ADD_TODO", value: todo }),
+    onAddTodo: (todo) => dispatch(actionTypes.addTodo(todo)),
   };
 };
 

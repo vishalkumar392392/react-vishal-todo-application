@@ -13,8 +13,6 @@ function App() {
           <Route path="/" component={TodoAddition} />
         </Switch>
 
-        {/* <TodoAddition /> */}
-        {/* <TodoList /> */}
         <TodoFilter />
       </BrowserRouter>
     </div>
