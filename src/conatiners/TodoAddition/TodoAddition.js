@@ -22,7 +22,7 @@ function TodoAddition(props) {
         <input
           className="form-control"
           type="text"
-          placeholder="Add todo"
+          placeholder="What needs to be done?"
           value={todo}
           onChange={(event) => onChangeHandler(event)}
         />

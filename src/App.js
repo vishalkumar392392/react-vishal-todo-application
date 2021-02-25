@@ -12,7 +12,6 @@ function App() {
         <Switch>
           <Route path="/" component={TodoAddition} />
         </Switch>
-
         <TodoFilter />
       </BrowserRouter>
     </div>
