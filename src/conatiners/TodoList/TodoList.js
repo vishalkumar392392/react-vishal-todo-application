@@ -46,7 +46,8 @@ function TodoList(props) {
                 type="checkbox"
                 value={todo.todo}
                 aria-label="Radio button for following text input"
-                onClick={radioButtonHandler}
+                onChange={radioButtonHandler}
+                checked={todo.status === "completed" ? true : false}
               />
             </div>
           </div>
